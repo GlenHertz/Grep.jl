@@ -1,14 +1,14 @@
-module Grep
+# Grep for Julia iterables/containers
 
-export grep
+## Usage
 
-"""
     grep(pattern)
     grep(function)
     grep(val)
     grep(val, iterable)
 
 Return a function that greps out matches of an interable.
+
 
 **Examples:**
 
@@ -43,14 +43,7 @@ Dict{String,String} with 3 entries:
   "LANG"     => "en_CA.UTF-8"
   "LANGUAGE" => "en_CA"
   "GDM_LANG" => "en_CA"
+
+
 ```
-"""
-function grep end
-grep(pat::Regex) = vec->filter(el->occursin(pat, string(el)), vec)
-grep(pat::AbstractString) = vec->filter(el->occursin(pat, string(el)), vec)
-grep(f::Function) = vec->filter(f, vec)
-grep(val) = vec->filter(isequal(val), vec)
-grep(target, iterator) = iterator |> grep(target)
 
-
-end # module
